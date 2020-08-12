@@ -1,0 +1,118 @@
+$colors: ('error','danger','warning','success','primary','secondary','black');
+@each $color in $colors {
+    .r-#{$color}-text {
+      color: var(--#{$color}-color) !important;
+    }
+    .r-#{$color}-bg {
+      background: var(--#{$color}-color) !important;
+    }
+    .r-#{$color}-btn {
+      background: var(--#{$color}-color) !important;
+      color: var(--#{$color}-text-color) !important;
+    }
+    .r-#{$color}-outline {
+        border: solid 1px var(--#{$color}-color) !important;
+    }
+}
+$buttonSize: ('lr':50px,'md':40px,'sm':36px, 'xs': 32px);
+@each $name, $size in $buttonSize {
+    .r-#{$name}-size {
+      height: $size !important;
+    }
+}
+$fontSize: ('lr':16px,'md':16px,'sm':14px, 'xs': 12px);
+@each $name, $size in $fontSize {
+    .r-#{$name}-size {
+      font-size: $size !important;
+    }
+}
+.r-button{
+    border-radius: 5px;
+    padding: 0px 16px;
+    font-weight: bold;
+    font-size: 14px;
+    border: none;
+    height: 50px;
+    min-width: 115px;
+    cursor: pointer;
+    box-shadow: 0px 4px 8px rgba(50, 50, 71, 0.06), 0px 4px 4px rgba(50, 50, 71, 0.08);
+}
+.r-inputField{
+    line-height: 22px;
+    margin-top: 10px;
+    margin-bottom: 5px;
+    .r-labelText{
+        font-weight: 500;
+        font-size: 14px;
+        margin-bottom: 10px;
+    }
+    .r-errorText{
+        font-weight: 500;
+        font-size: 12px;
+        margin-top: 4px;
+        opacity: 0;
+    }
+}
+.r-textarea{
+    padding: 16px;
+    resize: none;
+}
+.r-textarea:disabled{
+    padding: 5px;
+    overflow: auto;
+    max-height: 80px;
+    border: none;
+    color: inherit;
+    background: inherit;
+    font-weight: normal;
+}
+.r-input:focus {
+    border-color: #1932B9;
+}
+.r-input:disabled{
+    background: #E5E5E5;
+    color: #929292;
+    cursor: not-allowed;
+}
+.r-inputIcon {
+    position: absolute;
+    margin: auto;
+    top: 0px;
+    height: 100%;
+    img {
+        cursor: pointer;
+        width: 24px;
+        margin-left: auto;
+    }
+}
+
+.r-hasIcon-right{
+    height: 100%;
+    position: relative;
+    .r-input{
+        padding-right: 32px;
+    }
+    .r-inputIcon {
+        right: 12px;
+    }
+}
+.r-hasIcon-left{
+    height: 100%;
+    position: relative;
+    .r-input{
+        padding-left: 38px;
+    }
+    .r-inputIcon {
+        left: 12px;
+    }
+}
+.r-is-fullwidth{
+    width: 100%;
+}
+.r-center-flex{
+    display: flex;
+    align-items: center;
+}
+.r-input{
+    height: 100%;
+}
