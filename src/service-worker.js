@@ -1,4 +1,5 @@
-workbox.core.setCacheNameDetails({prefix: "SIFTI"});
+/* eslint-disable no-undef */
+workbox.core.setCacheNameDetails({prefix: "SW"});
 
 self.addEventListener('message', (event) => {
   if (event.data && event.data.type === 'SKIP_WAITING') {

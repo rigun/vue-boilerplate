@@ -16,6 +16,8 @@
             </div>
         </div>
     </div>
+    <translation />
+    <page-menu />
     <main>
       <transition name="slide-fade" mode="out-in">
         <router-view />
@@ -33,9 +35,14 @@
 <script>
 import RSnackbar from '@/components/main/snackbar.vue'
 import update from './mixins/update'
+import translation from '@/components/main/translationSwitcher'
+import pageMenu from '@/components/main/menu'
+
 export default {
   components: {
-    "r-snackbar": RSnackbar
+    "r-snackbar": RSnackbar,
+    translation,
+    pageMenu
   },
   data: () =>({
     loading: true,

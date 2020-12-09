@@ -2,7 +2,8 @@ import homeRoute from './homeRoute'
 import dashboardRoute from './dashboardRoute'
 import defaultRoute from './defaultRoute'
 import { routerFilter } from '@/plugins/helper'
-
+import { Trans } from '@/plugins/translation'
+import localeroute from '@/components/main/localeroute'
 function loadView(view) {
     return () => import( /* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
 }
@@ -13,7 +14,7 @@ const generateRoutes = async () => {
   const routes = [
     ...defaultRoute,        
     {
-      path: '/dashboard',
+      path: 'dashboard',
       meta: {
         requiresAuth: true,
         roleVerif: false,
@@ -33,7 +34,20 @@ const generateRoutes = async () => {
       children: homeChild
     },
   ]
-  console.log(routes)
-  return routerFilter(routes)
+  const filterRoute = await routerFilter(routes)
+  return [
+    {
+      path: '/:locale',
+      component: localeroute,
+      beforeEnter: Trans.routeMiddleware,
+      children: filterRoute
+    },
+    {
+      path: '*',
+      redirect(){
+        return Trans.getUserSupportedLocale();
+      }
+    }
+  ]
 }
 export default generateRoutes()

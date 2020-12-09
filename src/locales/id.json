@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "home": "Beranda",
+    "about": "Tentang"
+  },
+  "main": {
+    "welcome": "Hello dari {user}!",
+    "messages": "Tidak ada pesan | {count} pesan"
+  },
+  "about": {
+    "welcome": "Tentang vue boilerplate ini"
+  }
+}

@@ -1,8 +1,8 @@
 import { routerFilter } from '@/plugins/helper'
 import home from "@/components/page/home.vue"
-// function loadPage(view) {
-//     return () => import( /* webpackChunkName: "page-[request]" */ `@/components/page/${view}.vue`)
-// }
+function loadPage(view) {
+    return () => import( /* webpackChunkName: "page-[request]" */ `@/components/page/${view}.vue`)
+}
 function loadView(view) {
   return () => import( /* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
 }
@@ -16,6 +16,16 @@ const routes = [
           role: []
         },
         component: home,
+    },
+    {
+        path: 'about',
+        name: 'About',
+        meta: {
+          requiresAuth: false,
+          roleVerif: false,
+          role: []
+        },
+        component: loadPage('about'),
     },
     // {
     //     path: '/profile',

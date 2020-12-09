@@ -1,0 +1,13 @@
+{
+  "menu": {
+    "home": "Home",
+    "about": "About"
+  },
+  "main": {
+    "welcome": "Hello from {user}!",
+    "messages": "no messages | one message | {count} messages"
+  },
+  "about": {
+    "welcome": "about this vue boileplate"
+  }
+}
