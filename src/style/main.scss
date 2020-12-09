@@ -1,35 +1,4 @@
-:root {
-    --error-color: #bf0000;
-    --danger-color: #ED1A34;
-    --warning-color: #FF8F00;
-    --success-color: #038318;
-    --primary-color: #16347A;
-    --secondary-color: #F0F0F0;
-    --black-color: #172029;
-
-    --error-text-color: white;
-    --danger-text-color: white;
-    --warning-text-color: white;
-    --success-text-color: white;
-    --primary-text-color: white;
-    --secondary-text-color: #172029;
-    --black-text-color: white;
-}
-body{
-    padding: 0px;
-    margin: 0px;
-    color: #172029;
-    font-size: 12px;
-}
-*{
-    font-family: Poppins !important;
-    margin-bottom: 0px;
-}
-p{
-    margin-top: 0px;
-}
-a{
-    text-decoration: none !important;
-}
+@import 'styleGuide';
 @import 'helper';
 @import 'responsive';
+@import 'marginandpadding';

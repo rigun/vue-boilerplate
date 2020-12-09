@@ -4,7 +4,7 @@ import store from '@/store/index'
 import routes from './routes'
 
 const waitForStorageToBeReady = (to, from, next) => {
-  if (to.matched.some(route => route.meta.requiresAuth) && !store.getters['getisLoggedIn']) {
+  if (to.path == '/logout' && !store.getters['getisLoggedIn']) {
     next({
       name: 'Login'
     })

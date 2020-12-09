@@ -17,7 +17,6 @@ export default {
         console.log(e)
       }
       await this.$store.dispatch("logoutStorage");
-      // this.$router.push({ name: "Login" });
       location.reload()
     },
     async unsubscribeUser() {

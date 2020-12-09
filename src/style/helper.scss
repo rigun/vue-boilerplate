@@ -1,118 +1,353 @@
-$colors: ('error','danger','warning','success','primary','secondary','black');
+$colors: ('primary','secondary','black','error');
 @each $color in $colors {
-    .r-#{$color}-text {
-      color: var(--#{$color}-color) !important;
+    .r-#{$color}-filled-btn {
+        background: var(--#{$color});
+        border: 1px solid var(--#{$color});
+        color: var(--#{$color}-text);
+        &:hover{
+            background: var(--#{$color}-hover);
+            border: 1px solid var(--#{$color}-hover);
+            color: var(--#{$color}-text);
+        }
+        &:active{
+            background: var(--#{$color}-hover);
+            border: 1px solid var(--#{$color}-hover);
+            color: var(--#{$color}-text);
+        }
+        &:disabled{
+            background: var(--disabled);
+            border: 1px solid var(--disabled);
+            color: var(--disabled-text);
+            cursor: not-allowed;
+        }
     }
-    .r-#{$color}-bg {
-      background: var(--#{$color}-color) !important;
+    .r-#{$color}-outlined-btn {
+        background: var(--white);
+        border: 1px solid var(--#{$color});
+        color: var(--#{$color});
+        &:hover{
+            border: 1px solid var(--#{$color}-hover);
+            color: var(--#{$color}-hover);
+        }
+        &:active{
+            border: 1px solid var(--#{$color}-hover);
+            color: var(--#{$color}-hover);
+        }
+        &:disabled{
+            border: 1px solid var(--disabled);
+            color: var(--disabled);
+            cursor: not-allowed;
+        }
     }
-    .r-#{$color}-btn {
-      background: var(--#{$color}-color) !important;
-      color: var(--#{$color}-text-color) !important;
-    }
-    .r-#{$color}-outline {
-        border: solid 1px var(--#{$color}-color) !important;
+    .r-#{$color}-textOnly-btn {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--#{$color});
+        &:hover{
+            color: var(--#{$color}-hover);
+        }
+        &:active{
+            color: var(--#{$color}-hover);
+        }
+        &:disabled{
+            color: var(--disabled);
+            cursor: not-allowed;
+        }
     }
 }
-$buttonSize: ('lr':50px,'md':40px,'sm':36px, 'xs': 32px);
+$alertTypes: ('primary','secondary','black',"error","info","success","warning",'white');
+@each $type in $alertTypes{
+    .r-#{$type}-alert{
+        background: var(--#{$type}-alert);
+        color: var(--#{$type});
+    }
+    .r-#{$type}-bg{
+        background: var(--#{$type});
+    }
+
+    .r-#{$type}-text{
+        color: var(--#{$type});
+    }
+
+    .r-#{$type}-outline{
+        border-color: var(--#{$type});
+    }
+
+}
+
+$buttonSize: ('extra-large': 64px,'large':48px,'medium':40px);
 @each $name, $size in $buttonSize {
     .r-#{$name}-size {
-      height: $size !important;
-    }
-}
-$fontSize: ('lr':16px,'md':16px,'sm':14px, 'xs': 12px);
-@each $name, $size in $fontSize {
-    .r-#{$name}-size {
-      font-size: $size !important;
-    }
-}
-.r-button{
-    border-radius: 5px;
-    padding: 0px 16px;
-    font-weight: bold;
-    font-size: 14px;
-    border: none;
-    height: 50px;
-    min-width: 115px;
-    cursor: pointer;
-    box-shadow: 0px 4px 8px rgba(50, 50, 71, 0.06), 0px 4px 4px rgba(50, 50, 71, 0.08);
-}
-.r-inputField{
-    line-height: 22px;
-    margin-top: 10px;
-    margin-bottom: 5px;
-    .r-labelText{
-        font-weight: 500;
-        font-size: 14px;
-        margin-bottom: 10px;
-    }
-    .r-errorText{
-        font-weight: 500;
-        font-size: 12px;
-        margin-top: 4px;
-        opacity: 0;
-    }
-}
-.r-textarea{
-    padding: 16px;
-    resize: none;
-}
-.r-textarea:disabled{
-    padding: 5px;
-    overflow: auto;
-    max-height: 80px;
-    border: none;
-    color: inherit;
-    background: inherit;
-    font-weight: normal;
-}
-.r-input:focus {
-    border-color: #1932B9;
-}
-.r-input:disabled{
-    background: #E5E5E5;
-    color: #929292;
-    cursor: not-allowed;
-}
-.r-inputIcon {
-    position: absolute;
-    margin: auto;
-    top: 0px;
-    height: 100%;
-    img {
-        cursor: pointer;
-        width: 24px;
-        margin-left: auto;
+      height: $size;
     }
 }
 
-.r-hasIcon-right{
-    height: 100%;
-    position: relative;
-    .r-input{
-        padding-right: 32px;
+$squareSize: (4,8,10,15,20,24,28,32,36,40,56,64,80,112,176, 200);
+@each $size in $squareSize {
+    .r-#{$size}-square{
+        min-height: #{$size}px; 
+        max-height: #{$size}px;
+        min-width: #{$size}px; 
+        max-width: #{$size}px;
+        img{
+            width: 100%;
+        }
     }
-    .r-inputIcon {
-        right: 12px;
+    .r-#{$size}-wd{
+        min-width: #{$size}px; 
+        max-width: #{$size}px;
+    }
+}
+.r-80-square{
+    font-size: calc(80px - (80px/2) - 4px)
+}
+.r-112-square{
+    font-size: calc(112px - (112px/2) - 4px)
+}
+.r-176-square{
+    font-size: calc(176px - (176px/2) - 4px)
+}
+.r-hasIcon-left, .r-hasIcon-right{
+    position: relative;
+    img{
+        cursor: pointer;
+        position: absolute;
     }
 }
 .r-hasIcon-left{
-    height: 100%;
-    position: relative;
-    .r-input{
-        padding-left: 38px;
+    input{
+        padding-left: 38px !important;
     }
-    .r-inputIcon {
+    img{
+        margin-right: 12px;
         left: 12px;
     }
 }
-.r-is-fullwidth{
-    width: 100%;
+.r-hasIcon-right{
+    input{
+        padding-right: 38px !important;
+    }
+    img{
+        margin-left: 12px;
+        right: 12px;
+    }
+}
+.r-isExpand{
+    min-width: 100%;
 }
 .r-center-flex{
     display: flex;
     align-items: center;
 }
-.r-input{
+.r-flex-start-flex{
+    display: flex;
+    align-items: flex-start;
+}
+.r-fullcenter-flex{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.r-column, .r-flex-1{
+    flex: 1;
+}
+.r-wd-40{
+    width: 40px;
+}
+.r-inputPlace{
+    label{
+        margin-right: auto;
+    }
+}
+.r-isBold{
+    font-weight: bold !important;
+}
+.r-400{
+    font-weight: 400;
+}
+.r-500{
+    font-weight: 500;
+}
+.r-600{
+    font-weight: 600;
+}
+.r-700{
+    font-weight: 700;
+}
+.r-800{
+    font-weight: 800;
+}
+.r-hide-error{
+    opacity: 0;
+}
+.r-isRelative{
+    position: relative;
+}
+.r-isClickAble{
+    cursor: pointer;
+}
+
+.r-isFlex{
+    display: flex;
+}
+.r-wrap-flex{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+.r-isWrap{
+    flex-wrap: wrap;
+}
+.r-column-data{
+    max-width: 320px;
+}
+.r-center-text{
+    text-align: center;
+}
+.r-right-text{
+    text-align: right;
+}
+.r-flex-column{
+    display: flex;
+    flex-flow: column;
+}
+.r-isfull-position{
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+}
+#modal{
+    position: fixed;
+    z-index: 1500;
+    background: #0A0A0B87;
+    padding: 16px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .r-modal-box{
+        width: 100%;
+        max-width: 440px;
+        background: var(--white);
+        border: 1px solid var(--black-10);
+        box-sizing: border-box;
+        box-shadow: 0px 12px 24px rgba(10, 10, 11, 0.08);
+        border-radius: 4px;
+        .r-modal-header{
+            border-bottom: 1px solid var(--black-10);
+        }
+        .r-modal-form{
+            max-height: 80vh;
+            overflow: auto;
+        }
+    }
+}
+.r-black-60-text{
+    color: var(--black-60)
+}
+.r-black-60-bg{
+    background: var(--black-60)
+}
+.r-blue-20-text{
+    color: var(--blue-20)
+}
+.r-blue-20-bg{
+    background: var(--blue-20)
+}
+.r-blue-100-bg{
+    background: var(--blue-100)
+}
+.r-inputStyle{
+    border: 1px solid #CECECE;
+    box-sizing: border-box;
+    border-radius: 4px;
+}
+.r-rounded-px{
+    border-radius: 100px;
+}
+.r-columns{
+    margin-left: -8px;
+    margin-right: -8px;
+}
+.r-column{
+    margin: 0px 8px 16px;
+    width: 100%;
+    border: 1px solid #E6E6E7;
+    box-sizing: border-box;
+    border-radius: 4px;
+    background: var(--white);
+}
+.r-fullHeight{
     height: 100%;
+}
+.r-fullWidth{
+    width: 300px;
+}
+.r-hide-height{
+    height: 0px;
+}
+.r-show-height{
+    height: 100%;
+}
+.r-progress-bar, .r-progress{
+    border-radius: 50px;
+    height: 16px;
+}
+.r-progress-bar{
+    width: 100%;
+    min-width: 250px;
+    background: var(--black-10);
+    box-shadow: inset 0px 1px 4px rgba(0, 0, 0, 0.2);
+    position: relative;
+    .r-progress{
+        background: var(--primary);
+        position: absolute;
+        left: 0px;
+    }
+}
+.r-hide-with-animation{
+    animation: fadeOut 1s ease-in-out forwards;
+}
+
+@keyframes fadeOut {
+    0% { opacity: 1; visibility: visible; }  
+    100% { opacity: 0; visibility: hidden; }
+  }
+.isDemo{
+    padding: 4px 8px;
+    border: solid 1px var(--black-20);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    border-radius: 4px;
+    z-index: 10000000;
+    font-weight: bold;
+}
+.r-update-serviceWorker{
+    width: 200px;
+    position: fixed;
+    z-index: 100000;
+    right: 10px;
+    bottom: 10px;
+}
+.r-snackbar-box{
+    background: var(--white);
+    border: 1px solid var(--black-20);
+    box-sizing: border-box;
+    box-shadow: 0px 12px 28px rgba(0, 0, 0, 0.12);
+    border-radius: 4px;
+    margin: 0px auto;
+    padding: 0px 12px;
+    overflow: hidden;
+    min-height: 50px;
+    max-width: 350px;
+    .r-snackbar-text{
+        margin-right: auto;
+    }
+    .r-snackbar-action{
+        img{
+            cursor: pointer;
+        }
+
+    }
 }

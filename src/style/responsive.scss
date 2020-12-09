@@ -1,6 +1,206 @@
 @media screen and (min-width: 800px) {
     //   Desktop
+    .r-filter-box-sticky{
+        position: sticky;
+        top: 82px;
+    }
+    .r-slide{
+        img{
+          width: 100%;
+          height: 100%;
+        }
+      }
+    .r-youtube-preview{
+        width: 560px !important;
+        height: 315px !important;
+    }
+    #footer{
+        width: calc(100% - 160px);
+    }
+    .r-humburger-clone{
+        left: -40px;
+    }
+    #Sidebar{
+        min-width: 230px;
+        max-width: 230px;
+    }
+    .r-hide-sidebar{
+        min-width: 0px !important;
+        max-width: 0px !important;
+    }
+    .r-hide-sidebarHeader{
+        padding: 0px 4px !important;
+    }
+    .r-move-burger{
+        left: 0px !important;
+    }
+    .r-content .r-container {
+        padding: 20px;
+    }
+    .r-column-3{
+        width: calc(100%/3 - 18px)
+    }
+
+   
+    .r-detailEventLanding{
+        margin-top: 80px;
+        margin-bottom: 80px;
+        .r-detailEvent-bg{
+            background: var(--blue-10);
+            border: 1px solid var(--black-10);
+            box-sizing: border-box;
+            border-radius: 8px;
+            position: absolute;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: calc(100% - 250px);
+            z-index: 1;
+        }
+        .r-detailEvent-content{
+            z-index: 2;
+            .r-detailEvent{
+                margin-left: 24px;
+                max-width: 720px;
+            }
+        }
+    }
+    .r-timeline-items{
+        .r-timeline{
+            .r-timeline-data{
+                width: calc(100% - 100px);
+                margin: auto;
+                .r-center-data{
+                    margin: auto;
+                }
+                .r-side-data{
+                    min-width: 250px;
+                    max-width: 250px;
+                    .r-timeline-info{
+                        margin-left: auto
+                    }
+                }
+            }
+        }
+    }
+    .r-landing-padding{
+        padding-top: 50px;
+        padding-bottom: 50px;
+    }
+    .r-companyItem{
+        min-width: calc((100% - (16px * 6) )/6);
+    }
+    .r-column-4{
+        min-width: calc((100% - (16px * 4) )/4);
+    }
+    .r-column-3{
+        min-width: calc((100% - (16px * 3) )/3);
+    }
+    .r-column-2{
+        min-width: calc((100% - (16px * 2) )/2);
+    }
+    .r-column-three-quarters{
+        min-width: calc(75% - 16px);
+    }
+    .r-column-one-quarter{
+        min-width: calc(25% - 16px);
+    }
+    .r-university{
+        img{
+            width: 50px;
+        }
+    }
+    .r-hideInMobile{
+        display: inherit;
+    }
+    .r-showInMobile{
+        display: none;
+    }
+    .r-margin-left-responsive{
+        margin-left: auto;
+    }
 }
 @media screen and (max-width: 800px) {
+    
+    .r-ptb-40{
+        padding-top: 20px !important;
+        padding-bottom: 20px !important;
+    }
+    .r-useraccount-container{
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    .r-mlr-auto-mobile{
+        margin: 16px auto !important;
+    }
+  
+    //   Mobile
+    .r-column-3{
+        width: 100%;
+    }
+    .r-humburger-clone{
+        left: 0px;
+    }
+    .r-content .r-container {
+        padding: 16px;
+    }
+    .r-content, #NavbarDashboard, #Footer {
+        width: 100% !important;
+        padding-left: 0px !important;
+    }
+   
+    .r-isExpand-mobile{
+        width: 100% !important;
+        max-width: 100% !important;
+    }
+    .r-clearmargin-mobile {
+        margin-left: 0px !important;
+        margin-right: 0px !important;
+    }
+    
+    .r-detailEventLanding{
+        margin: 50px 0px;
+        .r-detailEvent-content{
+            flex-wrap: wrap;
+        }
+    }
+   
+    .r-hideInMobile{
+        display: none;
+    }
+    .r-showInMobile{
+        display: inherit;
+    }
+    .r-column-three-quarters{
+        min-width: 100%;
+    }
+    .r-column-one-quarter{
+        min-width: 100%;
+    }
+}
+
+@media screen and (min-width: 456px ) and (max-width: 800px) {
+    .r-column-4{
+        min-width: calc((100% - (16px * 2) )/2);
+    }
+    .r-column-3{
+        min-width: calc(100% - 16px);
+    }
+    .r-column-2{
+        min-width: calc(100% - 16px);
+    }
+}
+
+@media screen and (max-width: 456px) {
+        .r-column-4{
+        min-width: calc(100% - 16px);
+    }
+    .r-column-3{
+        min-width: calc(100% - 16px);
+    }
+    .r-column-2{
+        min-width: calc(100% - 16px);
+    }
+
     //   Mobile
 }

@@ -1,38 +1,28 @@
 function loadView(view) {
-    return () => import( /* webpackChunkName: "view-[request]" */ `@/views/${view}.vue`)
+    return () => import( /* webpackChunkName: "default-[request]" */ `@/views/${view}.vue`)
 }
 const defaultRoute = [
     {
-        path: '',
-        name: 'Login',
-        meta: {
-            requiresAuth: false,
-            beforelogin: true,
-            roleVerif: false,
-            role: []
-        },
-        component: loadView('Login')
+      path: '/login',
+      name: 'Login',
+      meta: {
+          requiresAuth: false,
+          beforelogin: true,
+          roleVerif: false,
+          role: []
       },
-      {
-        path: '/logoutuser',
-        name: 'logoutComponent',
-        meta: {
-            requiresAuth: true,
-            roleVerif: false,
-            role: []
-        },
-        component: loadView('Logout')
+      component: loadView('Login')
+    },
+    {
+      path: '/logout',
+      name: 'logoutComponent',
+      meta: {
+          requiresAuth: true,
+          roleVerif: false,
+          role: []
       },
-      {
-        path: '*',
-        name: 'NotFound',
-        meta: {
-            requiresAuth: true,
-            roleVerif: false,
-            role: []
-        },
-        component: loadView('NotFound')
-      }
+      component: loadView('Logout')
+    },
 ]
 
 export default defaultRoute

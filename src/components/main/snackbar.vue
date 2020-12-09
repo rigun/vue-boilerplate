@@ -1,6 +1,6 @@
 <template>
     <div class="r-snackbar" :class="!show ? 'r-snackbar-hide' : 'r-snackbar-show'"> 
-        <div class="r-snackbar-box" :class="`y-${snackbar.type}-bg`">
+        <div class="r-snackbar-box r-center-flex" :class="`r-${snackbar.type}-snackbarbg`">
             <div class="r-snackbar-text">
                 {{snackbar.text}}
             </div>
@@ -61,32 +61,21 @@ export default {
     position: fixed;
     height: 50px;
     z-index: 10000000000;
-    .r-snackbar-box{
-        color: white;
-        margin: 0px auto;
-        display: flex;
-        align-items: center;
-        padding: 0px 12px;
-        border-radius: 4px;
-        box-shadow: 0px 4px 32px rgba(0, 0, 0, 0.32);
-        overflow: hidden;
-        height: 50px;
-        .r-snackbar-text{
-            margin-right: auto;
-            font-style: normal;
-            font-weight: 500;
-            cursor: default;
-        }
-        .r-snackbar-action{
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            .r-snackbar-button{
-                cursor: pointer;
-                font-style: normal;
-                font-weight: 600;
-            }
-        }
+    width: 100%;
+}
+.r-error-snackbarbg{
+    background: var(--error) !important;
+    .r-snackbar-text, .r-snackbar-button{
+        color: var(--white) !important;
     }
+}
+.r-success-snackbarbg{
+    background: var(--success) !important;
+    .r-snackbar-text, .r-snackbar-button{
+        color: var(--white) !important;
+    }
+}
+.r-alert-snackbarbg{
+    background: var(--secondary) !important;
 }
 </style>

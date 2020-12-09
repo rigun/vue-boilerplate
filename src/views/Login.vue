@@ -10,103 +10,102 @@
                     <h1>Selamat datang</h1>
                     <p>Silahkan login untuk melanjutkan</p>
                 </div>
-                <div class="r-inputField">
-                    <div class="r-labelText">
-                        Username
-                    </div>
-                    <div class="r-hasIcon-right r-md-size">
-                        <input class="r-input" type="text" v-model="user.username" :class="error.username ? 'r-red-outline' : ''" @keyup="error.username = false" @keypress.enter="submitLogin()">
-                    </div>
-                    <div class="r-danger-text" :style="error.username ? 'opacity: 1 !important;': ''">
-                        {{errorMsg.username}}
-                    </div>
-                </div>
-                <div class="r-inputField">
-                    <div class="r-labelText">
-                        Password
-                    </div>
-                    <div class="r-hasIcon-right r-md-size">
-                        <input class="r-input" :type="showpassword ? 'text' : 'password'" v-model="user.password"  :class="error.password ? 'r-red-outline' : ''" @keyup="error.password = false" @keypress.enter="submitLogin()">
-                        <div class="r-inputIcon r-center-flex">
-                            <img :src="require(`@/assets/icons/login/${showpassword ? 'eyeClose' : 'eyeOpen'}.svg`)" alt="" @click="showpassword = !showpassword">    
+                <form novalidate @submit="submitLogin()">
+                    <div  class="r-inputPlace">
+                        <div class="r-center-flex">
+                            <label for="email" :class="error.email ? 'r-error-text' : ''">email</label>
                         </div>
+                        <input type="text" :class="error.email ? 'r-error-outline' : ''" v-model="item.email" name="email" placeholder="email" class="r-isExpand" >
+                        <span class="r-error-text r-body-reguler r-isBold " :class="error.email ? '' : 'r-hide-error'">{{errorMsg.email}}</span>
                     </div>
-                    <div class="r-danger-text" :style="error.password ? 'opacity: 1 !important;': ''">
-                        {{errorMsg.password}}
+                    <div class="r-inputPlace">
+                        <div class="r-center-flex">
+                            <label for="password" :class="error.password ? 'r-error-text' : ''">Password</label>
+                        </div>
+                        <div class="r-center-flex r-hasIcon-right">
+                            <input :type="show ? 'text' : 'password'" :class="error.password ? 'r-error-outline' : ''" v-model="item.password" name="password" placeholder="Password" class="r-isExpand" >
+                            <img :src="require(`@/assets/icons/login/eye${show ? 'Close' : 'Open'}.svg`)" alt="" @click.prevent="show = !show">
+                        </div>
+                        <span class="r-error-text r-body-reguler r-isBold " :class="error.password ? '' : 'r-hide-error'">{{errorMsg.password}}</span>
                     </div>
-                </div>
-               
-                <button class="r-button r-primary-btn r-is-fullwidth r-md-size" @click.prevent="submitLogin()">
-                    <span v-if="!load">Login</span>
-                    <img :src="require('@/assets/loadingDot.svg')" alt style="width: 50px;" v-else />
-                </button>
+                    <button :disabled="isLoading" class="r-primary-filled-btn r-large-size r-isExpand r-mtb-10" @click.prevent="submitLogin()">
+                        {{!isLoading ? 'Masuk' : ''}}
+                        <img :src="require('@/assets/loadingDot.svg')" style="width: 50px;" alt="" v-if="isLoading">
+                    </button>
+                </form>
             </div>
         </div>
     </div>
 </template>
 <script>
+import { validateForm } from '@/plugins/validation'
+
+
 export default {
     data: () => ({
-        user: {
-            username: null,
+        item: {
+            email: null,
             password: null
         },
         error: {
-            username: false,
+            email: false,
             password: false
         },
         errorMsg: {
-            username: 'Tidak boleh kosong',
+            email: 'Tidak boleh kosong',
             password: 'Tidak boleh kosong'
         },
-        showpassword: false,
+        show: false,
         isLoading: false
     }),
     methods:{
-        validateInput(){
-            var error = 0;
-            if(this.user.password == '' || this.user.password == null){
-                this.error.password = true
-                this.errorMsg.password = 'Password tidak boleh kosong'
-                error +=1 
-            }else{
-                this.error.password = false
-            }
-            if(this.user.username == '' || this.user.username == null){
-                this.error.username = true
-                this.errorMsg.username = 'Username tidak boleh kosong'
-                error +=1 
-            }else{
-                this.error.username = false
-            }
-            return error
+        async validateInput(){
+            const field = ['email','password']
+            const regexValidate = [
+                {
+                    name: 'email',
+                    regex: 'email'
+                }
+            ]
+            const { countError, error, errorMsg } = await validateForm(field,this.item,this.error, this.errorMsg,regexValidate)
+
+            this.error = error
+            this.errorMsg = errorMsg
+            return countError
         },
         async submitLogin() {
-            if(this.validateInput() != 0){
-                return 
+            const errorcount = await this.validateInput()
+            if(errorcount == 0){
+                this.isLoading= true
+                await this.$store.dispatch('auth/dummyLogin')
+                setTimeout(function(){ location.reload(); }, 2000);
+
+                // this.isLoading= true
+                // await this.$store.dispatch('auth/loginUser',this.item)
+                // this.isLoading = false
+                // var response = this.$store.getters['auth/getResponse']
+                // if(response.status == 0){
+                //     this.$store.dispatch("showSnackbar", {
+                //         type: "error",
+                //         text: response.msg
+                //     })
+                // }else{
+                //     if(this.$store.getters['getisLoggedIn']){
+                //          location.reload()
+                //     }else{
+                //         this.load = false;
+                //         this.error.email = true
+                //         this.errorMsg.email= `email dan password yang anda masukkan salah`
+                //         this.error.password = true
+                //         this.errorMsg.password= `email dan password yang anda masukkan salah`
+                //     }
+                // }
             }else{
-                this.error.password = false
-                this.error.username = false
-            }
-            this.isLoading= true
-            await this.$store.dispatch('auth/loginUser',this.user)
-            this.isLoading = false
-            var response = this.$store.getters['auth/getResponse']
-            if(response.status == 0){
                 this.$store.dispatch("showSnackbar", {
                     type: "error",
-                    text: response.msg
+                    text: "Mohon periksa kembali"
                 })
-            }else{
-                if(this.$store.getters['getisLoggedIn']){
-                    this.$router.push({ name: 'Dashboard' })
-                }else{
-                    this.load = false;
-                    this.error.username = true
-                    this.errorMsg.username= `Username dan password yang anda masukkan salah`
-                    this.error.password = true
-                    this.errorMsg.password= `Username dan password yang anda masukkan salah`
-                }
+                this.isLoading= false
             }
         }
     }

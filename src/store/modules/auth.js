@@ -42,7 +42,7 @@ const actions = {
         commit, rootState
     }, data) {
         try {
-            var response = await postData('login',data);
+            const response = await postData('login',data);
             if(response.data.status == 0){
                 commit('SET_RESPONSE', response.data);
                 return
@@ -61,11 +61,28 @@ const actions = {
         commit
     }, data) {
         try {
-            var response = await postData('logout',data);
+            const response = await postData('logout',data);
             commit('SET_RESPONSE', response.data);
         } catch (err) {
             commit('SET_FAILED')
         }
+    },
+    async dummyLogin({
+        commit, rootState
+    }){
+        const data = {
+            msg: 'success',
+            status: '1',
+            user: {
+                email: 'test@email.com',
+                name: 'test',
+                role: 'admin',
+                id: '0000-0000-0000-0000'
+            },
+            access_token: 'jwtToken'
+        }
+        rootState.isLoggedIn = true
+        commit('SET_TOKEN', data)
     }
 }
 

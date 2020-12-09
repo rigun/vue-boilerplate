@@ -4,7 +4,7 @@ import modules from './modules'
 import VuexPersistence from 'vuex-persist';
 import localForage from 'localforage';
 const authStorage = new VuexPersistence({
-    key: 'appName',
+    key: 'auth',
     storage: localForage,
     reducer: state => ({ auth: state.auth }),
     asyncStorage: true
